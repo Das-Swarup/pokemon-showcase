@@ -16,6 +16,7 @@ const Details = ({ pokeman, styles }) => {
             <span className="mr-4">#{pokeman.pokemon.number}</span>
             <span>{pokeman.pokemon.name}</span>
           </p>
+          <br />
           <p>
             <span>Species:&nbsp;</span>
             <span>{pokeman.pokemon.classification}</span>
@@ -29,6 +30,7 @@ const Details = ({ pokeman, styles }) => {
             <span>Weight:&nbsp;</span>
             <span>{pokeman.pokemon.weight.minimum}</span>
           </p>
+          <br />
           <p>
             {pokeman.pokemon.types.map((type, j) => {
               return (
@@ -41,6 +43,40 @@ const Details = ({ pokeman, styles }) => {
                 </span>
               );
             })}
+          </p>
+          <p>
+            <br />
+            <span className="text-xl font-semibold">Weakness:&nbsp;</span>
+            <p>
+              {pokeman.pokemon.weaknesses.map((weakness, l) => {
+                return (
+                  <span
+                    key={weakness}
+                    className="text-white text-2xl font-semibold mr-2 px-4 rounded"
+                    style={{ backgroundColor: styles[weakness.toLowerCase()] }}
+                  >
+                    {weakness}
+                  </span>
+                );
+              })}
+            </p>
+          </p>
+          <p>
+            <br />
+            <span className="text-xl font-semibold">Resistance:&nbsp;</span>
+            <p>
+              {pokeman.pokemon.resistant.map((resistance, m) => {
+                return (
+                  <span
+                    key={resistance}
+                    className="text-white text-2xl font-semibold mr-2 px-4 rounded"
+                    style={{ backgroundColor: styles[resistance.toLowerCase()] }}
+                  >
+                    {resistance}
+                  </span>
+                );
+              })}
+            </p>
           </p>
         </div>
       </div>
@@ -105,6 +141,8 @@ export async function getServerSideProps({ query }) {
           types
           maxHP
           image   
+          resistant
+          weaknesses
           height {
             minimum
             maximum
