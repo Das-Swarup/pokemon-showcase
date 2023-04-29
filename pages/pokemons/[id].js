@@ -2,7 +2,6 @@ import React from "react";
 import Layout from "../../components/Layout";
 import { gql } from "@apollo/client";
 import client from "../../apollo-client";
-import Link from "next/link";
 
 const Details = ({ pokeman, styles }) => {
   console.log(pokeman);
@@ -45,22 +44,16 @@ const Details = ({ pokeman, styles }) => {
               );
             })}
           </p>
-          <div>
+          <div >
             <br />
             <span className="text-xl font-semibold">Weakness:&nbsp;</span>
-            <div
-              style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)" }}
-            >
+            <div style={{display:"grid", gridTemplateColumns:"repeat(3,1fr)"}}> 
               {pokeman.pokemon.weaknesses.map((weakness, l) => {
                 return (
                   <p
                     key={weakness}
                     className="text-white text-2xl font-semibold mr-2 px-4 rounded"
-                    style={{
-                      backgroundColor: styles[weakness.toLowerCase()],
-                      width: "max-content",
-                      marginTop: "5px",
-                    }}
+                    style={{ backgroundColor: styles[weakness.toLowerCase()], width:"max-content", marginTop:"5px" }}
                   >
                     {weakness}
                   </p>
@@ -71,19 +64,13 @@ const Details = ({ pokeman, styles }) => {
           <div>
             <br />
             <span className="text-xl font-semibold">Resistance:&nbsp;</span>
-            <div
-              style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)" }}
-            >
+            <div style={{display:"grid", gridTemplateColumns:"repeat(3,1fr)"}}> 
               {pokeman.pokemon.resistant.map((resistance, m) => {
                 return (
                   <p
                     key={resistance}
                     className="text-white text-2xl font-semibold mr-2 px-4 rounded"
-                    style={{
-                      backgroundColor: styles[resistance.toLowerCase()],
-                      width: "max-content",
-                      marginTop: "5px",
-                    }}
+                    style={{ backgroundColor: styles[resistance.toLowerCase()], width:"max-content",marginTop:"5px" }}
                   >
                     {resistance}
                   </p>
@@ -99,38 +86,36 @@ const Details = ({ pokeman, styles }) => {
           {pokeman.pokemon.evolutions ? (
             pokeman.pokemon.evolutions.map((evo, k) => {
               return (
-                <Link href={`/pokemons/${evo.name}`}>
-                  <div key={evo.name} className="p-4" style={{cursor:"pointer"}}>
-                    <div className="bg-gray-200 py-4 px-6 rounded">
-                      <img
-                        src={evo.image}
-                        alt=""
-                        className="h-[152px] w-[152px] sm:h-[200px] sm:w-[200px]"
-                      />
-                      <span className="font-semibold text-1xl mr-2">
-                        #{`${evo.number}`}
-                      </span>
-                      <p className="text-center">
-                        <span className="text-3xl">{evo.name}</span>
-                      </p>
-                      <div className="text-center">
-                        {evo.types.map((type, j) => {
-                          return (
-                            <span
-                              key={type}
-                              className="text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded"
-                              style={{
-                                backgroundColor: styles[type.toLowerCase()],
-                              }}
-                            >
-                              {type}
-                            </span>
-                          );
-                        })}
-                      </div>
+                <div key={evo.name} className="p-4">
+                  <div className="bg-gray-200 py-4 px-6 rounded">
+                    <img
+                      src={evo.image}
+                      alt=""
+                      className="h-[152px] w-[152px] sm:h-[200px] sm:w-[200px]"
+                    />
+                    <span className="font-semibold text-1xl mr-2">
+                      #{`${evo.number}`}
+                    </span>
+                    <p className="text-center">
+                      <span className="text-3xl">{evo.name}</span>
+                    </p>
+                    <div className="text-center">
+                      {evo.types.map((type, j) => {
+                        return (
+                          <span
+                            key={type}
+                            className="text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded"
+                            style={{
+                              backgroundColor: styles[type.toLowerCase()],
+                            }}
+                          >
+                            {type}
+                          </span>
+                        );
+                      })}
                     </div>
                   </div>
-                </Link>
+                </div>
               );
             })
           ) : (
